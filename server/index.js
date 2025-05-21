@@ -7,20 +7,24 @@ const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
-
+ 
 // In-memory store (like a fake database for now)
 let userData = [];
 
 app.post('/api/save', (req, res) => {
-//   console.log('Received body:', req.body); // Add this line
-  const { name, email,age,address } = req.body;
+  const { name, email, age, address } = req.body;
 
-  if (!name || !email || !age || !address) {
-    return res.status(400).json({ message: 'FoemData is required' });
+  if (!name || !email || !age || !address) { 
+    return res.status(400).json({ message: 'FormData is required' });
+  }
+
+  // Check if email already exists
+  const emailExists = userData.some(user => user.email === email);
+  if (emailExists) {
+    return res.status(409).json({ message: 'Email already exists' });
   }
 
   userData.push({ name, email, age, address });
-//   console.log('User saved:', { name, email, age, address }); // Add this line
 
   res.status(200).json({ message: 'User data saved successfully!' });
 });
