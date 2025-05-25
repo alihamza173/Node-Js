@@ -67,7 +67,7 @@ function App() {
     borderRadius: "50%",
     background: "#1976d2",
     color: "#fff",
-    fontSize: "36px",
+    // fontSize: "36px",
     border: "none",
     boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
     cursor: "pointer",
